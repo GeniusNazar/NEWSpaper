@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Cтатті</h2>
+    <a href="{% url 'articlee:article-create'%}" class="btn-red">Додати статтю</a>
+
+
+    <br><br>
+
+    <form method="get" class="form-inline mb-3">
+        {{ form.category.label_tag }}
+        {{ form.category }}
+        <button type="submit" class="btn-red">Фільтрувати</button>
+    </form>
+
+    <ul class="list-group">
+        {% for article in articles %}
+        <li class="list-group-item">
+            <a href="{% url 'articlee:article-info' article.pk %}">{{ article.title }}</a>
+            <span class="btn-small">{{ article.status }}</span>
+            <span class="btn-small">{{ article.category }}</span>
+            <form action="{% url 'articlee:article-complete' article.pk%}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-small">Помітити як чернетку</button>
+        </form>
+        </li>
+        {% empty %}
+        <li class="list-group-item">Статті відсутні</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

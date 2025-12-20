@@ -1,0 +1,22 @@
+{% load static %}
+<header>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <div class="logo">
+        <h1>NEWSpaper</h1>
+    </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'articlee:article-list' %}">Головна</a></li>
+                <li><a href="{% url 'articlee:login' %}">Вхід</a></li>
+                <li><a href="{% url 'articlee:register' %}">Реєстрація</a></li>
+                <li>
+                    <form action="{% url 'articlee:logout' %}" method="post">
+                        {% csrf_token %}
+                        <a href="#" onclick="this.parentElement.submit(); return false;">Вихід</a>
+                    </form>
+                </li>
+            </ul>
+
+        </nav>
+
+    </header>

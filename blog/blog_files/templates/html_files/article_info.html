@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load custom_tags %}
+<div class="container">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.description}}</p>
+    <p>Статус: <span class="btn-small">{{ article.status }}</span></p>
+    <p>Категорія: <span class="btn-small">{{ article.priority}}</span></p>
+    <div class="comments mt-4">
+        <h2>Коментарі</h2>
+        {% for comment in article.comments.all %}
+            <div class="comments mb-2">
+                <p style="margin-bottom: 5px;">{{ comment.content }}</p>
+                {% if comment.media %}
+                    <div class="comment-media">
+                        {% if comment.media.url|endswith:".jpg" or comment.media.url|endswith:".png" or comment.media.url|endswith:".jpeg" %}
+                            <img src="{{ comment.media.url }}" alt="Зображення коментаря" style="max-width: 1000px;">
+                        {% elif comment.media.url|endswith:".mp4" %}
+                            <video width="320" height="240" controls>
+                                <source src="{{ comment.media.url }}" type="video/mp4">
+                                Browser does not support this video tag.
+                            </video>
+                        {% else %}
+                            <a href="{{ comment.media.url }}">Завантажити файл</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <small>Автор: {{comment.author.username}}</small>
+            </div>
+        <br>
+        {% endfor %}
+    </div>
+    <div class="add-comment mt-4">
+        <h2>Додати коментар</h2>
+        <form action="{% url 'articlee:article-info' article.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn-red">Відправити</button>
+        </form>
+    </div>
+    <br><br>
+    <a href="{% url 'articlee:article-update' article.id %}" class="btn-blue">Редагувати</a>
+    <a href="{% url 'articlee:article-delete' article.id %}" class="btn-red">Видалити</a>
+</div>
+<div class="category">
+    <a href="{% url 'articlee:article-list' %}">
+    </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>{{ view.title }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-red">Зберегти</button>
+    </form>
+</div>
+<div class="category">
+    <a href="{% url 'articlee:article-list' %}">
+    </a>
+</div>
+{% endblock %}

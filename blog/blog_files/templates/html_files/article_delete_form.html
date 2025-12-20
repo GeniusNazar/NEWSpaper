@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>Видалення статті</h2>
+    <p>Видалити статтю {object.title}?</p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-red">Так</button>
+      <a href="{% url 'articlee:article-list' %}" class="btn-green">Ні</a>
+    </form>
+</div>
+{% endblock %}
