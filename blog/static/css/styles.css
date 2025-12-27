@@ -122,7 +122,7 @@ li.list-group-item a {
 
 
 .btn-small {
-    background: linear-gradient(135deg, #424242, #212121);
+    background: linear-gradient(to bottom, #ff0000, #cc0000);
     color: white;
     border: none;
     border-radius: 4px;
@@ -139,7 +139,7 @@ li.list-group-item a {
 }
 
 .btn-small:hover {
-    background: linear-gradient(135deg, #212121, #000000);
+    background: linear-gradient(to bottom, #ff3333, #ff0000);
     transform: translateY(-1px);
 }
 

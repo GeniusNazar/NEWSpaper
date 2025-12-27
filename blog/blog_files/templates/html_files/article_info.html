@@ -6,7 +6,7 @@
     <h2>{{ article.title }}</h2>
     <p>{{ article.description}}</p>
     <p>Статус: <span class="btn-small">{{ article.status }}</span></p>
-    <p>Категорія: <span class="btn-small">{{ article.priority}}</span></p>
+    <p>Категорія: <span class="btn-small">{{ article.category}}</span></p>
     <div class="comments mt-4">
         <h2>Коментарі</h2>
         {% for comment in article.comments.all %}
@@ -40,7 +40,7 @@
         </form>
     </div>
     <br><br>
-    <a href="{% url 'articlee:article-update' article.id %}" class="btn-blue">Редагувати</a>
+    <a href="{% url 'articlee:article-update' article.id %}" class="btn-red">Редагувати</a>
     <a href="{% url 'articlee:article-delete' article.id %}" class="btn-red">Видалити</a>
 </div>
 <div class="category">

@@ -29,7 +29,7 @@ class ArticleListView(ListView):
         context["form"] = ArticleFilterForm(self.request.GET)
         return context
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(LoginRequiredMixin, DetailView):
     model = models.Article
     context_object_name = "article"
     template_name = "html_files/article_info.html"
